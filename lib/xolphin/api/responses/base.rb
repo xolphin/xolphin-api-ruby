@@ -37,6 +37,10 @@ module Xolphin
         def _embedded
           @data["_embedded"]
         end
+
+        def status_code
+          @data["status_code"]
+        end
       end
     end
   end
