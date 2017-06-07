@@ -1,0 +1,25 @@
+require_relative "../lib/xolphin/api"
+
+email = '<email>';
+
+client = Xolphin::Api::Client.new(Credentials.username, Credentials.password)
+certificate = client.certificate.get(950000487);
+request = Xolphin::Api::CertificateRequests::ReissueCertificateRequest.new("-----BEGIN CERTIFICATE REQUEST-----
+MIICzDCCAbQCAQAwgYYxCzAJBgNVBAYTAkJSMQ0wCwYDVQQIDAR0ZXN0MQ0wCwYD
+VQQHDAR0ZXN0MQ0wCwYDVQQKDAR0ZXN0MQ0wCwYDVQQLDAR0ZXN0MRswGQYDVQQD
+DBJleGNoYW5nZS5taGltZWUubmwxHjAcBgkqhkiG9w0BCQEWD3BpemRhQGdtYWls
+LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMfH+piYuiOBlGSS
+wN0R9MuMqWa6XbUE4dwjzbCcocoqW4cLC9SWpHoYjwlSpsuyJNrzxe5rwiiyNGUi
+Unm+HrY1+ADa+sCQhL2+siPd6nIZeNWrC6Zw1KDaAVWmm8x2gZb7+aDyA7l35BHB
+2LJ2tbgvcpLr8dOcN4f0DI719eEM5QtpYvf5YVEKCrAizirwFhx4xjPVW4jHsM1G
+wb0f115+HJgB69cign5XCKykqZ2lmJpzfZ1DQ7vU2MyRzxukD1QQy8aDf5w3lmlY
+baB1ofchJ5YiLO7Y0fxW18J6zEbfrsHgECQ29COpojNsdDy30Vt9g5br89EzdZlb
+End4NRsCAwEAAaAAMA0GCSqGSIb3DQEBBQUAA4IBAQBuOIZ4R6kfC5b7p8SOwXkS
+Q/g93311lGT7ArKn/XyFFrTEtYa3SN9QotaIgNxG6gXxgh/LD8g8w9q3wYswayzY
+cz6+5YjfblHcrWJ5zwVrKyD+8QLuC5xhrEFBBmYjzxihjAWkYtvaC4YKuo1PxESs
+RFlZosJFLIZpToXnGUfc5HgaI1/270plv57+1nOP4r+129d9r94z8sNDZACyi7Mp
+mHc7dQXFcmnyCk3PW9uwqU13pT08yrRHRTOTB25DkGqNG8IHtv9XJqfL1u7/FJil
+7W7eDOdoDXRHBZX9RlEZlekHE7kpziH7E7517BOX/RTmGLLQRmqPiZWkU8eWzHCl
+-----END CERTIFICATE REQUEST-----", 'EMAIL')
+request.approver_email = "test@gmail.com"
+puts client.certificate.reissue(certificate.id, request).inspect
