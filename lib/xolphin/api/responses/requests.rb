@@ -19,6 +19,10 @@ module Xolphin
             requests
           end
         end
+
+        def id
+          @data["id"]
+        end
       end
     end
   end
