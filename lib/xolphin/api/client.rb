@@ -16,6 +16,10 @@ module Xolphin
       def support
         Xolphin::Api::Endpoint::Support.new(@http)
       end
+
+      def invoice
+        Xolphin::Api::Endpoint::Invoice.new(@http)
+      end
     end
   end
 end

@@ -38,20 +38,20 @@ module Xolphin
 
         def reissue(id, request)
           result = @http.post("/certificates/#{id}/reissue", request.to_param)
-          response = Xolphin::Api::Responses::Requests.new(result)
+          Xolphin::Api::Responses::Requests.new(result)
         end
 
         def renew(id, request)
           result = @http.post("/certificates/#{id}/renew", request.to_param)
-          response = Xolphin::Api::Responses::Requests.new(result)
+          Xolphin::Api::Responses::Requests.new(result)
         end
 
         def cancel(id, reason, revoke = nil)
           revoke ||= false
           @http.post("/certificates/#{id}/cancel", [
-            'reason' => reason,
-            'revoke' => revoke
-          ])
+                       'reason' => reason,
+                       'revoke' => revoke
+                     ])
         end
       end
     end

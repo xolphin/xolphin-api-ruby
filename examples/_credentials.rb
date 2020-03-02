@@ -1,8 +1,9 @@
 class Credentials
-	def self.username 
-		'nikita@xolphin.nl'
-	end
-	def self.password 
-		'test1234'
-	end
+  def self.username
+    '<your-username>'
+  end
+
+  def self.password
+    '<your-super-secure-password>'
+  end
 end

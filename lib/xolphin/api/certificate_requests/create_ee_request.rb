@@ -14,16 +14,11 @@ module Xolphin
             "approverFirstName" => @approver_first_name,
             "approverLastName" => @approver_last_name,
             "approverEmail" => @approver_email,
-            "approverPhone" => @approver_phone,
+            "approverPhone" => @approver_phone
           }
 
-          if @validate
-            result['validate'] = true;
-          end
-
-          if @subject_alternative_names
-            result["subjectAlternativeNames"] = @subject_alternative_names.join(",")
-          end
+          result['validate'] = true if @validate
+          result["subjectAlternativeNames"] = @subject_alternative_names.join(",") if @subject_alternative_names
 
           result
         end

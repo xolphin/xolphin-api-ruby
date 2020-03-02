@@ -6,9 +6,8 @@ require 'xolphin/api/version'
 Gem::Specification.new do |spec|
   spec.name          = "xolphin-api"
   spec.version       = Xolphin::Api::VERSION
-  spec.authors       = ["Kentaa"]
-  spec.email         = ["support@kentaa.nl"]
-
+  spec.authors       = ["Xolphin", "Bart van Kalmthout - Faber"]
+  spec.email         = ["api@xolphin.com", "bart@xolphin.nl"]
   spec.summary       = "Xolphin API module for Ruby"
   spec.homepage      = "https://xolphin.nl/"
   spec.license       = "MIT"
@@ -21,6 +20,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.13"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 end

@@ -1,9 +1,7 @@
 require_relative "../lib/xolphin/api"
 
-email = '<email>';
-
 client = Xolphin::Api::Client.new(Credentials.username, Credentials.password)
-certificate = client.certificate.get(950000487);
+certificate = client.certificate.get(950_000_487)
 request = Xolphin::Api::CertificateRequests::ReissueCertificateRequest.new("-----BEGIN CERTIFICATE REQUEST-----
 MIICzDCCAbQCAQAwgYYxCzAJBgNVBAYTAkJSMQ0wCwYDVQQIDAR0ZXN0MQ0wCwYD
 VQQHDAR0ZXN0MQ0wCwYDVQQKDAR0ZXN0MQ0wCwYDVQQLDAR0ZXN0MRswGQYDVQQD

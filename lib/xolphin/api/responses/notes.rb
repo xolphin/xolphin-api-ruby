@@ -8,16 +8,15 @@ module Xolphin
 
         def notes
           @notes ||= begin
-              notes = []
-              if _embedded && _embedded["notes"]
-                _embedded["notes"].each do |note|
-                  notes << Note.new(note)
-                end
+            notes = []
+            if _embedded && _embedded["notes"]
+              _embedded["notes"].each do |note|
+                notes << Note.new(note)
               end
-              notes
+            end
+            notes
           end
         end
-
       end
     end
   end
