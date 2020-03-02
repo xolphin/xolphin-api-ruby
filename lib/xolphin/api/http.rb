@@ -26,7 +26,7 @@ module Xolphin
           http.request(request)
         end
 
-        JSON.parse(response.body)
+        JSON.parse(response.body).merge("status_code" => response.code)
       end
 
       def post(path, params = {})
@@ -40,7 +40,7 @@ module Xolphin
           http.request(request)
         end
 
-        JSON.parse(response.body)
+        JSON.parse(response.body).merge("status_code" => response.code)
       end
 
       def download(path, params = {})
