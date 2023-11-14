@@ -11,6 +11,10 @@ module Xolphin
         def id
           @data["id"]
         end
+        
+        def order_number
+          @data["orderNumber"]
+        end
 
         def domain_name
           @data["domainName"]
@@ -75,7 +79,26 @@ module Xolphin
         def approver_phone
           @data["approverPhone"]
         end
+        def approver_representative_first_name
+          @data["approverRepresentativeFirstName"]
+        end
 
+        def approver_representative_last_name
+          @data["approverRepresentativeLastName"]
+        end
+
+        def approver_representative_email
+          @data["approverRepresentativeEmail"]
+        end
+
+        def approver_representative_phone
+          @data["approverRepresentativePhone"]
+        end
+
+        def approver_position
+          @data["approverRepresentativePosition"]
+        end
+        
         def postbox
           @data["postbox"]
         end

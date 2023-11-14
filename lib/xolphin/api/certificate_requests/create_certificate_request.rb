@@ -7,6 +7,7 @@ module Xolphin
         attr_accessor :product, :years, :csr, :dcv_type, :subject_alternative_names, :dcv, :language
         attr_accessor :company, :department, :address, :zipcode, :city, :kvk, :reference, :referenceOrderNr
         attr_accessor :approver_first_name, :approver_last_name, :approver_email, :approver_phone
+        attr_accessor :approver_representative_first_name, :approver_representative_last_name, :approver_representative_email, :approver_representative_phone, :approver_representative_position
 
         def initialize(product, years, csr, dcv_type)
           @product = product
@@ -35,6 +36,11 @@ module Xolphin
             "approverLastName"  => @approver_last_name,
             "approverEmail"     => @approver_email,
             "approverPhone"     => @approver_phone,
+            "approverRepresentativeFirstName" => @approver_representative_first_name, 
+            "approverRepresentativeLastName"  => @approver_representative_last_name,  
+            "approverRepresentativeEmail"  => @approver_representative_email,
+            "approverRepresentativePhone"  => @approver_representative_phone,
+            "approverRepresentativePosition"  => @approver_representative_position,
             "language"          => @language,
             "referenceOrderNr"  => @referenceOrderNr
           }.reject { |_key, value| value.nil? })

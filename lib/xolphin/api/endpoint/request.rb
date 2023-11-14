@@ -3,9 +3,24 @@ require 'time'
 module Xolphin
   module Api
     module Endpoint
-      class Request
+      class RequestDeprecate
+        extend Gem::Deprecate
+
         def initialize(http)
           @http = http
+        end
+
+        def _send()
+        end
+        
+        deprecate :_send, 'The [approverFirstName, approverLastName, approverPhone] fields are deprecated please use [approverRepresentativeFirstName, approverRepresentativeLastName, approverRepresentativePhone].', 2023, 11
+      end
+
+      class Request
+
+        def initialize(http)
+          @http = http
+          @deprecated = RequestDeprecate.new(@http)
         end
 
         def all
@@ -39,8 +54,15 @@ module Xolphin
         end
 
         def send(request)
-          result = @http.post("/requests", request.to_param)
+          requestParams = request.to_param
+          deprecatedFields = ["approverFirstName", "approverLastName", "approverPhone"]
 
+          if deprecatedFields.any? { |element| requestParams.include?(element) }
+            @deprecated._send()
+          end
+
+          result = @http.post("/requests", requestParams)
+          
           Xolphin::Api::Responses::Request.new(result)
         end
 
@@ -63,6 +85,15 @@ module Xolphin
 
           Xolphin::Api::Responses::Notes.new(result)
         end
+        
+        def scheduleValidationCall(id, date_time, extra = nil)
+          t = Time.parse(date_time)
+          params = { 'date' => t.strftime("%Y-%m-%d"), 'time' => t.strftime("%H:%M") }
+        
+          params.merge!(extra) if extra.is_a?(Hash)
+        
+          @http.post("requests/#{id}/schedule-validation-call", params)
+        end
 
         def sendComodoSAEmail(id, to, language = nil)
           @http.post("requests/#{id}/sa", 'sa_email' => to, 'language' => language)
@@ -70,11 +101,6 @@ module Xolphin
 
         def upload(id, document, description = nil)
           @http.post("requests/#{id}/upload-document", 'document' => document, 'description' => description)
-        end
-
-        def scheduleValidationCall(id, date_time)
-          t = Time.parse(date_time)
-          @http.post("requests/#{id}/schedule-validation-call", 'date' => t.strftime("%Y-%m-%d"), 'time' => t.strftime("%H:%M"))
         end
 
         def retryDCV(id, domain, dcv_type, email = nil)
