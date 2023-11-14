@@ -18,8 +18,9 @@ module Xolphin
       def get(path, params = {})
         uri = URI.parse(File.join(api_url, path))
         uri.query = URI.encode_www_form(params) unless params.empty?
+        pkgver = Xolphin::Api::VERSION
 
-        request = Net::HTTP::Get.new(uri)
+        request = Net::HTTP::Get.new(uri, {'User-Agent' => "xolphin-api-ruby/#{pkgver}"})
         request.basic_auth(@username, @password)
 
         response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
@@ -31,8 +32,9 @@ module Xolphin
 
       def post(path, params = {})
         uri = URI.parse(File.join(api_url, path))
+        pkgver = Xolphin::Api::VERSION
 
-        request = Net::HTTP::Post.new(uri)
+        request = Net::HTTP::Post.new(uri, {'User-Agent' => "xolphin-api-ruby/#{pkgver}"})
         request.basic_auth(@username, @password)
         request.set_form_data(params)
 
@@ -46,8 +48,9 @@ module Xolphin
       def download(path, params = {})
         uri = URI.parse(File.join(api_url, path))
         uri.query = URI.encode_www_form(params) unless params.empty?
+        pkgver = Xolphin::Api::VERSION
 
-        request = Net::HTTP::Get.new(uri)
+        request = Net::HTTP::Get.new(uri, {'User-Agent' => "xolphin-api-ruby/#{pkgver}"})
         request.basic_auth(@username, @password)
 
         response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
